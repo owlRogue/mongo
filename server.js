@@ -27,15 +27,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-// mongoose.connect("mongodb://localhost/Article");
+mongoose.connect("mongodb://localhost/Article");
 
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/Article";
+// var MONGODB_URI = process.env."mongodb://heroku_g54k6rkl:56951lsmshq59k803n5epgnjvi@ds255320.mlab.com:55320/heroku_g54k6rkl" || "mongodb://localhost/Article";
 
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB
-mongoose.Promise = Promise;
-mongoose.connect(MONGODB_URI);
+// mongoose.Promise = Promise;
+// mongoose.connect(MONGODB_URI);
 
 
 // Routes
@@ -43,9 +43,11 @@ mongoose.connect(MONGODB_URI);
 // A GET route for scraping the echoJS website
 app.get("/scrape", function(req, res) {
   // First, we grab the body of the html with request
+  console.log(res)
   axios.get("http://www.echojs.com/").then(function(response) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(response.data);
+    console.log(response.data)
 
     // Now, we grab every h2 within an article tag, and do the following:
     $("article h2").each(function(i, element) {
@@ -80,7 +82,7 @@ app.get("/scrape", function(req, res) {
 // Route for getting all Articles from the db
 app.get("/articles", function(req, res) {
   // TODO: Finish the route so it grabs all of the articles
-  db.Article.find().sort({name: 1}, function(err,data){
+  db.Article.find(), function(err,data){
     if (err){
       console.log(err);
     }
@@ -89,7 +91,7 @@ app.get("/articles", function(req, res) {
     }
   });
 });
-});
+
 
 // Route for grabbing a specific Article by id, populate it with it's note
 app.get("/articles/:id", function(req, res) {
