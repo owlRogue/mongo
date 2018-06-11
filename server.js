@@ -27,10 +27,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-// mongoose.connect("mongodb://localhost/article_db");
+// mongoose.connect("mongodb://localhost/Article");
 
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/article_db";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/Article";
 
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB
@@ -80,6 +80,15 @@ app.get("/scrape", function(req, res) {
 // Route for getting all Articles from the db
 app.get("/articles", function(req, res) {
   // TODO: Finish the route so it grabs all of the articles
+  db.Article.find().sort({name: 1}, function(err,data){
+    if (err){
+      console.log(err);
+    }
+    else{
+      res.json(data);
+    }
+  });
+});
 });
 
 // Route for grabbing a specific Article by id, populate it with it's note
