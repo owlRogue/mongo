@@ -1,117 +1,112 @@
-var express = require("express");
-var bodyParser = require("body-parser");
-var logger = require("morgan");
-var mongoose = require("mongoose");
+var cheerio = require("cheerio"); // Parses our HTML and helps us find elements
+var request = require("request"); // Makes HTTP request for HTML page
 
-// Our scraping tools
-// Axios is a promised-based http library, similar to jQuery's Ajax method
-// It works on the client and on the server
-var axios = require("axios");
-var cheerio = require("cheerio");
+// First, tell the console what server.js is doing
+console.log("\n***********************************\n" +
+            "Grabbing ICD-10-CM Codes and Info for Gender identity disorder diagnoses\n" +
+            "Listed under F64- Gender identity disorders ›" +
+            "\n***********************************\n");
 
-// Require all models
-var db = require("./models");
+var results = [];
+var f64Sites = ["https://www.icd10data.com/ICD10CM/Codes/F01-F99/F60-F69/F64-/F64.0",
+                "https://www.icd10data.com/ICD10CM/Codes/F01-F99/F60-F69/F64-/F64.1",
+                "https://www.icd10data.com/ICD10CM/Codes/F01-F99/F60-F69/F64-/F64.2",
+                "https://www.icd10data.com/ICD10CM/Codes/F01-F99/F60-F69/F64-/F64.8",
+                "https://www.icd10data.com/ICD10CM/Codes/F01-F99/F60-F69/F64-/F64.9"
+                ]
+var heading = "h1.pageHeading"
 
-var PORT = 3000;
+request(f64Sites[0], function(error, response, html) {
+  var $ = cheerio.load(html);
 
-// Initialize Express
-var app = express();
-
-// Configure middleware
-
-// Use morgan logger for logging requests
-app.use(logger("dev"));
-// Use body-parser for handling form submissions
-app.use(bodyParser.urlencoded({ extended: true }));
-// Use express.static to serve the public folder as a static directory
-app.use(express.static("public"));
-
-// Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/Article");
-
-// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-// var MONGODB_URI = process.env."mongodb://heroku_g54k6rkl:56951lsmshq59k803n5epgnjvi@ds255320.mlab.com:55320/heroku_g54k6rkl" || "mongodb://localhost/Article";
-
-// Set mongoose to leverage built in JavaScript ES6 Promises
-// Connect to the Mongo DB
-// mongoose.Promise = Promise;
-// mongoose.connect(MONGODB_URI);
-
-
-// Routes
-
-// A GET route for scraping the echoJS website
-app.get("/scrape", function(req, res) {
-  // First, we grab the body of the html with request
-  console.log(res)
-  axios.get("http://www.echojs.com/").then(function(response) {
-    // Then, we load that into cheerio and save it to $ for a shorthand selector
-    var $ = cheerio.load(response.data);
-    console.log(response.data)
-
-    // Now, we grab every h2 within an article tag, and do the following:
-    $("article h2").each(function(i, element) {
-      // Save an empty result object
-      var result = {};
-
-      // Add the text and href of every link, and save them as properties of the result object
-      result.title = $(this)
-        .children("a")
-        .text();
-      result.link = $(this)
-        .children("a")
-        .attr("href");
-
-      // Create a new Article using the `result` object built from scraping
-      db.Article.create(result)
-        .then(function(dbArticle) {
-          // View the added result in the console
-          console.log(dbArticle);
-        })
-        .catch(function(err) {
-          // If an error occurred, send it to the client
-          return res.json(err);
-        });
+  $(heading).each(function(i, element) {
+    var title = $(element).children().text();
+    results.push({
+      title: title,
     });
-
-    // If we were able to successfully scrape and save an Article, send a message to the client
-    res.send("Scrape Complete");
   });
-});
 
-// Route for getting all Articles from the db
-app.get("/articles", function(req, res) {
-  // TODO: Finish the route so it grabs all of the articles
-  db.Article.find(), function(err,data){
-    if (err){
-      console.log(err);
-    }
-    else{
-      res.json(data);
-    }
+  $("h2.codeDescription").each(function(i, element) {
+    var description = $(element).text();
+    results.push({
+      description: description,
+    });
   });
 });
 
 
-// Route for grabbing a specific Article by id, populate it with it's note
-app.get("/articles/:id", function(req, res) {
-  // TODO
-  // ====
-  // Finish the route so it finds one article using the req.params.id,
-  // and run the populate method with "note",
-  // then responds with the article with the note included
+request(f64Sites[1], function(error, response, html) {
+  var $ = cheerio.load(html);
+  
+  $(heading).each(function(i, element) {
+    var title = $(element).children().text();
+    results.push({
+      title: title,
+    });
+  });
+
+  $("h2.codeDescription").each(function(i, element) {
+    var description = $(element).text();
+    results.push({
+      description: description,
+    });
+  });
 });
 
-// Route for saving/updating an Article's associated Note
-app.post("/articles/:id", function(req, res) {
-  // TODO
-  // ====
-  // save the new note that gets posted to the Notes collection
-  // then find an article from the req.params.id
-  // and update it's "note" property with the _id of the new note
+request(f64Sites[2], function(error, response, html) {
+  var $ = cheerio.load(html);
+
+  $(heading).each(function(i, element) {
+    var title = $(element).children().text();
+    results.push({
+      title: title,
+    });
+  });
+
+  $("h2.codeDescription").each(function(i, element) {
+    var description = $(element).text();
+    results.push({
+      description: description,
+    });
+  });
 });
 
-// Start the server
-app.listen(PORT, function() {
-  console.log("App running on port " + PORT + "!");
+request(f64Sites[3], function(error, response, html) {
+  var $ = cheerio.load(html);
+
+  $(heading).each(function(i, element) {
+    var title = $(element).children().text();
+    results.push({
+      title: title,
+    });
+  });
+
+  $("h2.codeDescription").each(function(i, element) {
+    var description = $(element).text();
+    results.push({
+      description: description,
+    });
+  });
 });
+
+request(f64Sites[4], function(error, response, html) {
+  var $ = cheerio.load(html);
+
+  $(heading).each(function(i, element) {
+    var title = $(element).children().text();
+    results.push({
+      title: title,
+    });
+  });
+
+  $("h2.codeDescription").each(function(i, element) {
+    var description = $(element).text();
+    results.push({
+      description: description,
+    });
+  });
+// });
+
+  console.log(results);
+});
+
