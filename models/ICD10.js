@@ -12,8 +12,8 @@ var ICD10Schema = new Schema({
     required: true
   }
   // ,
-  // `link` is required and of type String
-  // link: {
+  // `description` is required and of type String
+  // description: {
   //   type: String,
   //   required: true
   // },

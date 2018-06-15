@@ -2,5 +2,5 @@
 
 module.exports = {
   ICD10: require("./ICD10"),
-  // Note: require("./Note")
+  Note: require("./Note")
 };

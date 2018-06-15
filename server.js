@@ -31,12 +31,7 @@ mongoose.connect("mongodb://localhost/eligend");
 
 // GLOBAL VARIABLES
 var heading = "h1.pageHeading"
-var f64Sites = ["https://www.icd10data.com/ICD10CM/Codes/F01-F99/F60-F69/F64-/F64.0",
-                "https://www.icd10data.com/ICD10CM/Codes/F01-F99/F60-F69/F64-/F64.1",
-                "https://www.icd10data.com/ICD10CM/Codes/F01-F99/F60-F69/F64-/F64.2",
-                "https://www.icd10data.com/ICD10CM/Codes/F01-F99/F60-F69/F64-/F64.8",
-                "https://www.icd10data.com/ICD10CM/Codes/F01-F99/F60-F69/F64-/F64.9"
-                ]
+
 
 // Routes
 
