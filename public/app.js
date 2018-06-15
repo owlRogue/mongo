@@ -31,6 +31,19 @@ function displayResults(data) {
 }
 
 
+$('#call-codes').on("click", function(event){
+  event.preventDefault();
+
+  // $('tbody').empty();
+  $.getJSON("/scrape", function(data){
+      displayResults(data)
+    })
+    $('tbody').empty();
+    $.getJSON("/codes", function(data){
+      displayResults(data)
+    })
+  })
+
 $('#code-title').on("click", function(event){
   event.preventDefault();
 
@@ -40,16 +53,6 @@ $('#code-title').on("click", function(event){
   })
 
 })
-
-// $('#animal-name').on("click", function(event){
-//   event.preventDefault();
-
-//   $('tbody').empty();
-//   $.getJSON("/name", function(data){
-//     displayResults(data)
-//   })
-
-// })
 
 // $('#weight-sort').on("click", function(event){
 //   event.preventDefault();
