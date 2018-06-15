@@ -31,14 +31,20 @@ mongoose.connect("mongodb://localhost/eligend");
 
 // GLOBAL VARIABLES
 var heading = "h1.pageHeading"
-
+var description = "h2.codeDescription" // var description = $(element).text();
+var f64Sites = ["https://www.icd10data.com/ICD10CM/Codes/F01-F99/F60-F69/F64-/F64.0",
+                "https://www.icd10data.com/ICD10CM/Codes/F01-F99/F60-F69/F64-/F64.1",
+                "https://www.icd10data.com/ICD10CM/Codes/F01-F99/F60-F69/F64-/F64.2",
+                "https://www.icd10data.com/ICD10CM/Codes/F01-F99/F60-F69/F64-/F64.8",
+                "https://www.icd10data.com/ICD10CM/Codes/F01-F99/F60-F69/F64-/F64.9"
+                ]
 
 // Routes
 
 // A GET route for scraping the echoJS website
 app.get("/scrape", function(req, res) {
   // First, we grab the body of the html with request
-  axios.get("https://www.icd10data.com/ICD10CM/Codes/F01-F99/F60-F69/F64-/F64.1").then(function(response) {
+  axios.get(f64Site[0]).then(function(response) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(response.data);
 
