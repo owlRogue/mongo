@@ -1,9 +1,10 @@
-// Grab the articles as a json
-$.getJSON("/articles", function(data) {
+// Grab the codes as a json
+$.getJSON("/codes", function(data) {
   // For each one
   for (var i = 0; i < data.length; i++) {
     // Display the apropos information on the page
-    $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
+    // $("#codes").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
+    $("#codes").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + "</p>");
   }
 });
 
@@ -15,10 +16,10 @@ $(document).on("click", "p", function() {
   // Save the id from the p tag
   var thisId = $(this).attr("data-id");
 
-  // Now make an ajax call for the Article
+  // Now make an ajax call for the ICD10
   $.ajax({
     method: "GET",
-    url: "/articles/" + thisId
+    url: "/codes/" + thisId
   })
     // With that done, add the note information to the page
     .then(function(data) {
@@ -50,7 +51,7 @@ $(document).on("click", "#savenote", function() {
   // Run a POST request to change the note, using what's entered in the inputs
   $.ajax({
     method: "POST",
-    url: "/articles/" + thisId,
+    url: "/codes/" + thisId,
     data: {
       // Value taken from title input
       title: $("#titleinput").val(),

@@ -2,43 +2,20 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>Mongo Scraping</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Sans:100,400,600,700">
-    <script src="app.js"></script>
-  </head>
+    <title>Scraping With Mongoose</title>
     <style>
-      body {
-  width: auto;
-  background-color: aliceblue;
-  font-family: "Josefin Sans" 100px;
-  text-align: left;
-  font-size: 14px;
-}
-.navbar {
-  height: 20px;
-  border-radius: 0px;
-  background-color: rgb(37, 35, 35);
-  opacity: 1;
-  border: none;
-  width: auto;
-  margin-top: 0px;
-  min-width: 600px;
-}
-      /* body { background-color: aliceblue } */
+      body { background-color: #F2F6D0 }
       #wrapper {
         width: 960px;
         margin-left: auto;
         margin-right: auto;
         padding-top: 5%;
       }
-      #articles {
+      #codes {
         display: inline-block;
         overflow: auto;
         width: 60%;
-        height: 600px;
+        height: 700px;
       }
       #notes {
         float: right;
@@ -47,7 +24,7 @@
       textarea, input {
         display: block;
         width: 100%;
-        background-color: aliceblue;
+        background-color: #FCF5C7;
       }
       input {
         height: 36px;
@@ -57,36 +34,16 @@
         height: 200px;
         font-size: 18px;
       }
-      .scrape-new {
-        background-color: lime;
-      }
     </style>
-  
-  <body> 
-
-            <nav class="navbar navbar-inverse navbar-dark">
-                <div class="navbar-header">
-        
-                    <a href="#" class="active"><a href="/">Home</a>
-                    <a href="/saved">Saved Articles</a>
-                <a class="btn scrape-new">SCRAPE NEW ARTICLES!</a>
-        
-                </div>
-            </nav>
-
-      </div>
-    </nav>
-      
-        <div id="wrapper">
-          <div id="articles"></div>
-          <div id="notes"></div>
-        </div>
-      <div class="container-fluid article-container">
-      </div>
-          
+  </head>
+  <body>
+    <div id="wrapper">
+      <h1>Note Scraper</h1>
+      <h2><i>If you can do this...the homework should be no problem.</i></h2>
+      <div id="codes"></div>
+      <div id="notes"></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="app.js"></script>
   </body>
 </html>
-
-
-
-
