@@ -34,7 +34,6 @@ function displayResults(data) {
 $('#call-codes').on("click", function(event){
   event.preventDefault();
 
-  // $('tbody').empty();
   $.getJSON("/scrape", function(data){
       displayResults(data)
     })
