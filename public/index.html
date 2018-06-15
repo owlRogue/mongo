@@ -4,16 +4,109 @@
     <meta charset="UTF-8">
     <title>ICD10 Code Scraper</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-        crossorigin="anonymous">
+    crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Sans:100,400,600,700">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js" type="text/javascript"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-    <link href="assets/css/style.css" rel="stylesheet">
-    
+    <!-- <link href="style.css" rel="stylesheet"> -->  
   </head>
+
+<style>
+  body {
+  width: auto;
+  background-color: lightgray;
+  font-family: "Josefin Sans";
+}
+.navbar {
+  height: 40px;
+  border-radius: 0px;
+  background-color: rgb(37, 35, 35);
+  opacity: 1;
+  border: none;
+  width: auto;
+  margin-top: 0px;
+  min-width: 600px;
+  font-weight: 200;
+  font-size: 17px;
+  color: aliceblue;
+}
+#wrapper {
+  padding-top: 20px;
+}
+#return-panel.row {
+  height: 400px;
+  width: auto;
+  margin: 0px;
+  background-color: rgb(51, 49, 58);
+  padding: 30px;
+}
+#input-panel.row {
+  height: auto;
+  width: 100%;
+  margin: 0px;
+}
+.col-md-4 {
+  position: relative;
+  padding: 15px;
+  margin: 5px;
+  min-width: 200px;
+  min-height: 200px;
+  color: lightgray;
+  background-color: rgb(147, 153, 173);
+}
+#codes {
+  display: inline-block;
+  overflow: auto;
+  width: auto;
+  height: auto;
+}
+#notes {
+  width: auto;
+}
+
+table,
+th,
+tr,
+td {
+  border-color: black;
+  border-style: dotted;
+  border-width: 0.5px;
+  width: auto;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: center;
+  color: lightslategray;
+}
+
+th {
+  font-weight: 400;
+}
+
+td {
+  font-weight: 200;
+}
+
+button {
+  height: 20px;
+}
+textarea,
+input {
+  display: block;
+  width: 90%;
+  background-color: lightgray;
+}
+input {
+  height: 36px;
+  font-size: 24px;
+}
+textarea {
+  height: 200px;
+  font-size: 18px;
+}
+
+</style>
+
   <body>
 
       <nav class="navbar navbar-dark" id="nav">TG ICD10 Code Scraper
