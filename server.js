@@ -68,6 +68,8 @@ app.get("/scrape", function(req, res) {
         });
     });
 
+    
+
     // If we were able to successfully scrape and save an ICD10, send a message to the client
     res.send("Scrape Complete");
   });

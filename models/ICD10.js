@@ -13,10 +13,10 @@ var ICD10Schema = new Schema({
   },
   // ,
   // `description` is required and of type String
-  description: {
-    type: String,
-    required: true
-  }
+  // description: {
+  //   type: String,
+  //   required: true
+  // }
   // ,
   // `note` is an object that stores a Note id
   // The ref property links the ObjectId to the Note model
