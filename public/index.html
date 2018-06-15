@@ -2,96 +2,56 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>Scraping With Mongoose</title>
-    <style>
-      body { background-color: aliceblue }
-      #wrapper {
-        width: 960px;
-        margin-left: auto;
-        margin-right: auto;
-        padding-top: 5%;
-      }
-      #codes {
-        display: inline-block;
-        overflow: auto;
-        width: 30%;
-        height: 700px;
-      }
-      #notes {
-        float: right;
-        width: 30%;
-      }
-      
-      table,
-      td {
-        border-color: black;
-        border-style: solid;
-        border-width: 1px;
-      }
-
-      table {
-        width: 500px;
-        background-color: antiquewhite;
-      }
-
-      td {
-        padding: 15px;
-        text-align: center;
-      }
-
-      button {
-        width: 250px;
-        height: 50px;
-        margin-top: 20px;
-        margin-bottom: 20px;
-      }
-      textarea, input {
-        display: block;
-        width: 100%;
-        background-color: #FCF5C7;
-      }
-      input {
-        height: 36px;
-        font-size: 24px;
-      }
-      textarea {
-        height: 200px;
-        font-size: 18px;
-      }
-    </style>
+    <title>ICD10 Code Scraper</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Sans:100,400,600,700">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js" type="text/javascript"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <link href="assets/css/style.css" rel="stylesheet">
+    
   </head>
   <body>
 
-      <nav class="navbar navbar-inverse navbar-dark" id="nav">ICD10 Scraper
+      <nav class="navbar navbar-dark" id="nav">TG ICD10 Code Scraper
           <!-- <div id="time-left"></div> -->
                   <div id="buttons">
                     <button id="call-codes">call codes</button>
+                    <button id="code-sort">Sort By Code</button>
+                    <button id="name-sort">Sort By Name</button>
                   </div>
       </nav>
-      <h2><i>ICD Codes related to Transgender Medical Benefits</i></h2>
 
-      <div id="buttons">
-          <button id="code-sort">Sort By Code</button>
-          <button id="name-sort">Sort By Name</button>
-        </div>
-        <table id="results">
-          <thead>
-            <tr>
-              <th id="code-id">id</th>
-              <th id="code-title">title</th>
-              <th id="code-description">description</th>
-              <th id="code-note">note</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- Results from DB here -->
-          </tbody>
-        </table>
+      <div class="row" id="return-panel">
+          <table id="results">
+              <thead>
+                <tr>
+                  <th id="code-id">id</th>
+                  <th id="code-title">title</th>
+                  <th id="code-description">description</th>
+                  <th id="code-note">note</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Results from DB here -->
+              </tbody>
+            </table>
+      </div>
+      <div class="row" id="input-panel">
+          <a name="datapanel"></a>
 
-    <div id="wrapper">
-      <div id="codes"></div>
-      <div id="notes"></div>
-    </div>
+          <div class="col-md-4" id="codes">
+              <!-- <form id="form" class="textarea"> THIS IS BEING BUILT BY JQUERY -->
+          </div>
+  
+          <div class="col-md-4" id="notes">
+              <div id="area" class="textarea"></div>
+          </div>
+      </div>
+      </div>
    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="app.js"></script>
