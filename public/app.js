@@ -1,16 +1,68 @@
-// Grab the codes as a json
-$.getJSON("/codes", function(data) {
-  // For each one
-  for (var i = 0; i < data.length; i++) {
-    // Display the apropos information on the page
-    // $("#codes").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].description + "</p>");
-    $("#codes").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + "</p>");
-  }
-});
+// // Grab the codes as a json
+// $.getJSON("/codes", function(data) {
+//   // For each one
+//   for (var i = 0; i < data.length; i++) {
+//     // Display the apropos information on the page
+//     // $("#codes").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].description + "</p>");
+//     $("#codes").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + "</p>");
+//   }
+// });
 
+
+$(document).ready (
+
+  $.getJSON("/all", function(data) {
+    displayResults(data);
+  })
+);
+
+function displayResults(data) {
+  data.forEach((i) => {
+    console.log(JSON.stringify(i));
+    $("#results").append(
+      $(`<tr>
+          <td>${i.id}</td>
+          <td>${i.title}</td>
+          <td>${i.description}</td>
+          <td>${i.note}</td>
+          </tr>`)
+    );
+  })
+}
+
+
+$('#code-title').on("click", function(event){
+  event.preventDefault();
+
+  $('tbody').empty();
+  $.getJSON("/codes", function(data){
+    displayResults(data)
+  })
+
+})
+
+// $('#animal-name').on("click", function(event){
+//   event.preventDefault();
+
+//   $('tbody').empty();
+//   $.getJSON("/name", function(data){
+//     displayResults(data)
+//   })
+
+// })
+
+// $('#weight-sort').on("click", function(event){
+//   event.preventDefault();
+
+//   $('tbody').empty();
+//   $.getJSON("/weight", function(data){
+//     displayResults(data)
+//   })
+
+// })
 
 // Whenever someone clicks a p tag
-$(document).on("click", "p", function() {
+$(document).on("click", "tr", function() {
   // Empty the notes from the note section
   $("#notes").empty();
   // Save the id from the p tag

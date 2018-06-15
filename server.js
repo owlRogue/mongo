@@ -44,17 +44,10 @@ app.get("/scrape", function(req, res) {
 
     // Now, we grab every h2 within an article tag, and do the following:
     $(heading).each(function(i, element) {
-      // Save an empty result object
       var result = {};
-
-      // Add the text and href of every link, and save them as properties of the result object
-      // result.title = $(element).children().text();
       result.title = $(this)
         .children()
         .text();
-      // result.link = $(this)
-      //   .children("a")
-      //   .attr("href");
 
       // Create a new ICD10 using the `result` object built from scraping
       db.ICD10.create(result)
@@ -75,10 +68,23 @@ app.get("/scrape", function(req, res) {
   });
 });
 
-// Route for getting all ICD10s from the db
+app.get("/all", function(req, res) {
+  // Query: In our database, go to the zoo collection, then "find" everything
+  db.ICD10.find({})
+    .then(function(dbICD10) {
+      // If we were able to successfully find ICD10s, send them back to the client
+      res.json(dbICD10);
+    })
+    .catch(function(err) {
+      // If an error occurred, send it to the client
+      res.json(err);
+    });
+});
+
+// Route for getting ordered ICD10s from the db
 app.get("/codes", function(req, res) {
   // Grab every document in the ICD10s collection
-  db.ICD10.find({})
+  db.ICD10.find().sort({ title: 1 })
     .then(function(dbICD10) {
       // If we were able to successfully find ICD10s, send them back to the client
       res.json(dbICD10);

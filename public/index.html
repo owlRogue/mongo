@@ -21,6 +21,30 @@
         float: right;
         width: 30%;
       }
+      
+      table,
+      td {
+        border-color: black;
+        border-style: solid;
+        border-width: 1px;
+      }
+
+      table {
+        width: 500px;
+        background-color: antiquewhite;
+      }
+
+      td {
+        padding: 15px;
+        text-align: center;
+      }
+
+      button {
+        width: 250px;
+        height: 50px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
       textarea, input {
         display: block;
         width: 100%;
@@ -37,12 +61,38 @@
     </style>
   </head>
   <body>
-    <div id="wrapper">
-      <h1>ICD10 Scraper</h1>
+
+      <nav class="navbar navbar-inverse navbar-dark" id="nav">ICD10 Scraper
+          <!-- <div id="time-left"></div> -->
+                  <div id="buttons">
+                    <button id="call-codes">call codes</button>
+                  </div>
+      </nav>
       <h2><i>ICD Codes related to Transgender Medical Benefits</i></h2>
+
+      <div id="buttons">
+          <button id="code-sort">Sort By Code</button>
+          <button id="name-sort">Sort By Name</button>
+        </div>
+        <table id="results">
+          <thead>
+            <tr>
+              <th id="code-id">id</th>
+              <th id="code-title">title</th>
+              <th id="code-description">description</th>
+              <th id="code-note">note</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Results from DB here -->
+          </tbody>
+        </table>
+
+    <div id="wrapper">
       <div id="codes"></div>
       <div id="notes"></div>
     </div>
+   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="app.js"></script>
   </body>
