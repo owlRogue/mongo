@@ -54,6 +54,16 @@ $('#code-title').on("click", function(event){
 
 })
 
+$(' #code-sort').on("click", function(event){
+  event.preventDefault();
+
+  $('tbody').empty();
+  $.getJSON("/codes", function(data){
+    displayResults(data)
+  })
+
+})
+
 // $('#weight-sort').on("click", function(event){
 //   event.preventDefault();
 
