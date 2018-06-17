@@ -21,7 +21,7 @@ function displayResults(data) {
     console.log(JSON.stringify(i));
     $("#results").append(
       $(`<tr>
-          <td>${i.id}</td>
+          <td>${i._id}</td>
           <td>${i.title}</td>
           <td>${i.description}</td>
           <td>${i.note}</td>
