@@ -19,7 +19,7 @@ $(document).ready (
 function displayResults(data) {
   data.forEach((i) => {
     console.log(JSON.stringify(i));
-    $("#results").append(
+    $("#results tbody").append(
       $(`<tr>
           <td>${i._id}</td>
           <td>${i.title}</td>
