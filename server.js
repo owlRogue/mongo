@@ -26,9 +26,11 @@ app.use(logger("dev"));
 app.use(bodyParser.urlencoded({ extended: true }));
 // Use express.static to serve the public folder as a static directory
 app.use(express.static("public"));
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/eligend"
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/eligend");
+// mongoose.connect("mongodb://localhost/eligend");
+mongoose.connect(MONGODB_URI);
 
 // GLOBAL VARIABLES
 var heading = "h1.pageHeading"
