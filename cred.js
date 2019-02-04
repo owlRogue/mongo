@@ -1,1 +1,0 @@
-var password = S1t0r1i1d9e0r!
